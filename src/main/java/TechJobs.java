@@ -64,7 +64,7 @@ public class TechJobs {
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
                 } else {
-                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm.toUpperCase()));
                 }
             }
         }
@@ -115,11 +115,24 @@ public class TechJobs {
         } while(!validChoice);
 
         return choiceKeys[choiceIdx];
-    }
+    }    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-    // Print a list of jobs
-    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        for (HashMap<String, String> jobs: someJobs) {
+            System.out.println("*****");
 
-        System.out.println("printJobs is not implemented yet");
+            for (HashMap.Entry<String, String> i: jobs.entrySet()) {
+               System.out.println(i.getKey() + ": " + i.getValue());}
+
+           // jobs.forEach((key, value) -> System.out.println(key + ": " + value));
+            System.out.println("*****");
+            System.out.println("\n");
+        }
+
+        if (someJobs.isEmpty()) {
+            System.out.println("No Results.");
+
+        }
+
+
     }
 }
